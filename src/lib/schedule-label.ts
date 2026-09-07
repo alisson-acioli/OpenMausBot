@@ -55,6 +55,20 @@ export function whenLabel(at: number): string {
   return sameDay ? niceTime(at) : date.toLocaleDateString(activeLocale(), { month: "short", day: "numeric" });
 }
 
+/** A run status shown inline. The calendar used to write this as
+ * `status.replace("waiting", "needs you")`, which only worked while the status
+ * and the label were both English. */
+export function runStatusLabel(status: string): string {
+  if (status === "queued") return t("routines.status.queued");
+  if (status === "running") return t("routines.status.running");
+  if (status === "waiting") return t("routines.status.waiting");
+  if (status === "completed") return t("routines.status.completed");
+  if (status === "failed") return t("routines.status.failed");
+  if (status === "cancelled") return t("routines.status.cancelled");
+  if (status === "missed") return t("routines.status.missed");
+  return status;
+}
+
 export function durationLabel(minutes: number): string {
   if (minutes < 60) return t("schedule.durationMin", { count: minutes });
   if (minutes % 60 === 0) return t("schedule.durationHr", { count: minutes / 60 });
