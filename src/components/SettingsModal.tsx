@@ -535,13 +535,13 @@ export function SettingsModal() {
   const q = query.trim().toLowerCase();
   const visibleSections = SECTIONS.filter((entry) => (!remoteActive || entry.id === "companion") && sectionMatches(entry, q));
   const sectionLabelKey = SECTIONS.find((entry) => entry.id === section)?.labelKey;
+  const nextVisibleSection = visibleSections.some((entry) => entry.id === section) ? undefined : visibleSections[0]?.id;
 
   useEffect(() => {
-    const visible = SECTIONS.filter((entry) => (!remoteActive || entry.id === "companion") && sectionMatches(entry, q));
-    if (visible.some((entry) => entry.id === section)) return;
-    const first = visible[0];
-    if (first) dispatch({ type: "toggleAppSettings", open: true, section: first.id });
-  }, [dispatch, q, remoteActive, section]);
+    // Translated matches can change without the query changing. Follow the
+    // rendered results instead of a second filter with stale effect inputs.
+    if (nextVisibleSection) dispatch({ type: "toggleAppSettings", open: true, section: nextVisibleSection });
+  }, [dispatch, nextVisibleSection]);
 
   useEffect(() => {
     const previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
