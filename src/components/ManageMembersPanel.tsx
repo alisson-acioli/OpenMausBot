@@ -133,7 +133,10 @@ export function ManageMembersPanel({
             disabled={!memberIds.length}
             className="flex-1 rounded-lg bg-accent py-2 text-[14px] font-medium text-white hover:brightness-110 disabled:opacity-40"
           >
-            Save{memberIds.length ? ` · ${memberIds.length} ${memberIds.length === 1 ? "bot" : "bots"}` : ""}
+            {t("common.save")}
+            {memberIds.length
+              ? ` · ${memberIds.length === 1 ? t("teams.count.botOne") : t("teams.count.botMany", { count: memberIds.length })}`
+              : ""}
           </button>
         </div>
       </div>

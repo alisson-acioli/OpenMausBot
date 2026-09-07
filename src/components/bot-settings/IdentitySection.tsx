@@ -9,7 +9,7 @@ import { BookOpen } from "lucide-react";
 import type { Bot } from "@/state/store";
 import type { MausMotion, MausState } from "@/lib/mascot";
 import { cn } from "@/lib/cn";
-import { t } from "@/lib/i18n";
+import { activeLocale, t } from "@/lib/i18n";
 import { BOT_PROFILE_LIMITS } from "../../../shared/bot-profile";
 import { BotProfileAvatarCard } from "../BotProfileAvatarCard";
 import { BotInstructionsDialog } from "../BotInstructionsDialog";
@@ -78,7 +78,7 @@ export function IdentitySection({
               one-line field otherwise reads as an invitation to fill it. */}
           {bot.description.length > 3_000 && (
             <span className="shrink-0 tabular-nums">
-              {bot.description.length.toLocaleString()} / {BOT_PROFILE_LIMITS.description.toLocaleString()}
+              {bot.description.length.toLocaleString(activeLocale())} / {BOT_PROFILE_LIMITS.description.toLocaleString(activeLocale())}
             </span>
           )}
         </div>

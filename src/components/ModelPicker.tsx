@@ -664,7 +664,7 @@ export function ModelPicker({
                     bot={bot}
                     threadId={threadId}
                     className="shrink-0 border-t border-hairline/40 px-4 py-3"
-                    label={<span className="text-[12.5px] font-medium text-ink">Effort</span>}
+                    label={<span className="text-[12.5px] font-medium text-ink">{t("botSettings.model.effort")}</span>}
                   />
                 )}
 

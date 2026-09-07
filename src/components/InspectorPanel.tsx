@@ -213,7 +213,11 @@ export function InspectorPanel({ bot }: { bot: Bot }) {
           ))}
         </div>
         <span className="ml-auto text-[11px] text-ink-secondary">
-          {page ? (shown < total ? `last ${shown} of ${total}` : `${shown} entries`) : "loading…"}
+          {page
+            ? shown < total
+              ? t("inspector.lastOf", { shown, total })
+              : t("inspector.entries", { count: shown })
+            : t("inspector.loading")}
         </span>
         <button onClick={() => managedRefresh.current()} className="rounded-md p-1 text-ink-secondary hover:bg-raised hover:text-ink" title={t("inspector.reload")}>
           <RefreshCw size={14} />

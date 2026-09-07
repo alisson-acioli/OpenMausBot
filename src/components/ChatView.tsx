@@ -146,7 +146,7 @@ function TaskTimeline({ messages, busy }: { messages: Message[]; busy: boolean }
                 )}
               />
               <span className="sr-only">{event.state}: </span>
-              <span className="truncate">{event.label}</span>
+              <span className="truncate">{event.labelKey ? t(event.labelKey) : event.label}</span>
               <time className="ml-auto shrink-0 text-[11px] text-ink-secondary/70">{formatTime(event.at)}</time>
             </li>
           ))}
@@ -409,7 +409,7 @@ function Bubble({
                 ? "bg-bubble-user px-4 py-2.5 whitespace-pre-wrap text-ink"
                 : "bg-card px-4 py-2.5 text-ink",
           )}
-          title={new Date(message.at).toLocaleString()}
+          title={new Date(message.at).toLocaleString(activeLocale())}
         >
           {replyTarget && (
             <div className="mb-2">

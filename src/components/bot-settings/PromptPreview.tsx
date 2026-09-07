@@ -5,7 +5,7 @@
 import { ChevronDown } from "lucide-react";
 
 import { cn } from "@/lib/cn";
-import { t } from "@/lib/i18n";
+import { activeLocale, t } from "@/lib/i18n";
 
 export interface PromptPreviewData {
   sections: Array<{ id: string; label: string; text: string; bytes: number }>;
@@ -36,8 +36,8 @@ export function PromptPreview({
         <span className="text-[15px] font-medium text-ink">
           {data
             ? t("botSettings.promptPreviewWith", {
-                bytes: data.totalBytes.toLocaleString(),
-                tokens: data.approxTokens.toLocaleString(),
+                bytes: data.totalBytes.toLocaleString(activeLocale()),
+                tokens: data.approxTokens.toLocaleString(activeLocale()),
               })
             : t("botSettings.promptPreview")}
         </span>
@@ -56,7 +56,7 @@ export function PromptPreview({
             <details key={section.id} className="rounded-lg border border-hairline/40 bg-inset px-3 py-2">
               <summary className="flex cursor-pointer items-center justify-between gap-3 text-[13px] text-ink">
                 <span>{section.label}</span>
-                <span className="shrink-0 tabular-nums text-ink-secondary">{t("botSettings.bytes", { count: section.bytes.toLocaleString() })}</span>
+                <span className="shrink-0 tabular-nums text-ink-secondary">{t("botSettings.bytes", { count: section.bytes.toLocaleString(activeLocale()) })}</span>
               </summary>
               <pre className="mt-2 max-h-48 overflow-auto whitespace-pre-wrap break-words font-mono text-[12px] leading-relaxed text-ink">
                 {section.text}

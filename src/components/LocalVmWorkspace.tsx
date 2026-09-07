@@ -217,9 +217,9 @@ function useNativeViewObscured(explicit: boolean) {
 
 function statusLabel(status: LocalVmWorkspaceStatus | null, nativeStatus: DesktopWorkspaceState["status"]) {
   if (!status) return t("vmWorkspace.checkingVm");
-  if (status.container === "missing") return "VM not created";
-  if (status.container === "stopped") return "VM stopped";
-  if (!status.ready) return "VM unavailable";
+  if (status.container === "missing") return t("vmWorkspace.vmNotCreated");
+  if (status.container === "stopped") return t("vmWorkspace.vmStopped");
+  if (!status.ready) return t("vmWorkspace.vmUnavailable");
   if (nativeStatus === "error") return t("vmWorkspace.viewerUnavailable");
   if (nativeStatus !== "ready") return t("vmWorkspace.connectingViewer");
   return t("vmWorkspace.liveWatchOnly");

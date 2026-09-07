@@ -285,7 +285,7 @@ function SectionContextDialog({ section, label, onClose }: { section: string; la
                   {updatedAt ? ` ${t("teamMap.dialog.lastSaved", { when: new Date(updatedAt).toLocaleString(activeLocale()) })}` : ""}
                 </span>
                 <span className={cn("shrink-0 tabular-nums", bytes > maxBytes && "text-danger")}>
-                  {t("teamMap.dialog.bytes", { used: bytes.toLocaleString(), max: maxBytes.toLocaleString() })}
+                  {t("teamMap.dialog.bytes", { used: bytes.toLocaleString(activeLocale()), max: maxBytes.toLocaleString(activeLocale()) })}
                 </span>
               </div>
             </>

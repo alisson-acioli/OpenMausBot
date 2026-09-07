@@ -3,7 +3,7 @@
 // outside the app. Edits go to the record through the normal bot patch;
 // the server writes the mirror. A draft that is over the cap stays local
 // and is never sent, so the counter is the only thing that turns red.
-import { t } from "@/lib/i18n";
+import { activeLocale, t } from "@/lib/i18n";
 import { useEffect, useState } from "react";
 
 import { BOT_PROFILE_LIMITS } from "../../shared/bot-profile";
@@ -117,10 +117,18 @@ export function SoulField({
       />
       <div className="mt-1.5 flex items-start justify-between gap-3 text-[11px] text-ink-secondary">
         <span>
-          In this bot’s context on every turn.{info ? <> Mirrored to <span className="break-all">{info.file}</span>.</> : null}
+          {t("soulField.inContext")}
+          {info
+            ? <> {t("soulField.mirroredTo").split("{file}").flatMap((part, index) =>
+                index === 0 ? [part] : [<span key="file" className="break-all">{info.file}</span>, part],
+              )}</>
+            : null}
         </span>
         <span className={cn("shrink-0 tabular-nums", over && "font-medium text-red-500")}>
-          {bytes.toLocaleString()} / {limit.toLocaleString()} bytes{over ? " — not saved" : ""}
+          {t(over ? "soulField.bytesOver" : "soulField.bytes", {
+            used: bytes.toLocaleString(activeLocale()),
+            max: limit.toLocaleString(activeLocale()),
+          })}
         </span>
       </div>
     </div>

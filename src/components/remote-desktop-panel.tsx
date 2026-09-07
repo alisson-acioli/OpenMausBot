@@ -260,7 +260,7 @@ export function RemoteDesktopPanel({ bot }: { bot: Bot }) {
             >
               <Loader2 size={13} className={activeRoutineRun.status === "queued" ? "" : "animate-spin"} />
               <span className="min-w-0 flex-1 truncate">
-                {activeRoutineRun.routineName} · {activeRoutineRun.status === "waiting" ? "needs you" : activeRoutineRun.status}
+                {activeRoutineRun.routineName} · {activeRoutineRun.status === "waiting" ? t("routines.status.waiting") : activeRoutineRun.status}
               </span>
             </button>
           )}
@@ -277,7 +277,7 @@ export function RemoteDesktopPanel({ bot }: { bot: Bot }) {
                   <span className="min-w-0 flex-1">
                     <span className="block truncate text-[12.5px] font-medium text-ink">{routine.name}</span>
                     <span className="block truncate text-[10.5px] text-ink-secondary">
-                      {routineScheduleLabel(routine)}{routine.runOn === "cloud" ? " · runs on VM" : ""}
+                      {routineScheduleLabel(routine)}{routine.runOn === "cloud" ? ` · ${t("remote.runsOnVm")}` : ""}
                     </span>
                   </span>
                   <span className="shrink-0 text-[10px] text-ink-secondary">{nextRunLabel(routine.nextRunAt)}</span>

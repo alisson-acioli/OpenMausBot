@@ -275,7 +275,7 @@ const Transcript = memo(function Transcript({
                     !user && m.id === emergingId && "turn-answer",
                     user ? "chat-text whitespace-pre-wrap bg-bubble-user text-ink" : "bg-card text-ink",
                   )}
-                  title={new Date(m.at).toLocaleString()}
+                  title={new Date(m.at).toLocaleString(activeLocale())}
                 >
                   {m.replyToId && (() => {
                     const target = transcript.find((candidate) => candidate.id === m.replyToId);
@@ -1077,7 +1077,7 @@ export function GroupView({ group }: { group: Group }) {
   const memberMauses = members.map((b) => (
     <span
       key={b.id}
-      title={`${b.name}${group.busyBotId === b.id ? " — working…" : ""}`}
+      title={group.busyBotId === b.id ? t("chat.memberWorkingTitle", { name: b.name }) : b.name}
       className={cn(
         "relative inline-flex rounded-full",
         group.busyBotId === b.id && "ring-2 ring-accent/50 ring-offset-1 ring-offset-app",

@@ -158,7 +158,7 @@ export function VoiceSettings({
           <div className="inline-flex rounded-xl bg-inset p-1" role="radiogroup" aria-label={t("voice.outputOnMac")}>
             {([
               { value: "system", label: t("voice.builtInMac"), available: true },
-              { value: "host", label: provider === "elevenlabs" ? "Host · ElevenLabs" : t("voice.hostVoice"), available: hostConfigured },
+              { value: "host", label: provider === "elevenlabs" ? t("voice.hostElevenLabs") : t("voice.hostVoice"), available: hostConfigured },
             ] as const).map((option) => (
               <button
                 key={option.value}

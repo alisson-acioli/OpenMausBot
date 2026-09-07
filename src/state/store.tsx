@@ -2376,7 +2376,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
           if (card?.requestId) {
             api(`/api/threads/${action.threadId}/respond`, {
               method: "POST",
-              body: JSON.stringify({ requestId: card.requestId, behavior: "deny", message: "Dismissed by user." }),
+              body: JSON.stringify({ requestId: card.requestId, behavior: "deny", message: t("approval.dismissedByUser") }),
             }).catch(() => {});
           } else {
             persistCard(action.botId, action.messageId, { dismissed: true });

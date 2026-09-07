@@ -71,7 +71,9 @@ export function GoalRunCard({ message }: { message: Message }) {
   const detail = compact(run.detail, DETAIL_LIMIT);
   const turns = run.status === "working"
     ? t("goal.turnOf", { current: Math.min(run.turnCount + 1, run.maxTurns), max: run.maxTurns })
-    : `${run.turnCount} ${run.turnCount === 1 ? "turn" : "turns"}`;
+    : run.turnCount === 1
+      ? t("chat.usage.turnsOne")
+      : t("chat.usage.turnsMany", { count: run.turnCount });
 
   return (
     <section
@@ -91,7 +93,7 @@ export function GoalRunCard({ message }: { message: Message }) {
           </div>
           {detail && <p className="mt-1 line-clamp-2 text-[12.5px] leading-relaxed text-ink-secondary">{detail}</p>}
           <p className="mt-1 text-[11.5px] text-ink-secondary/80">
-            {run.coordinatorName} coordinating · {turns}
+            {t("goal.coordinating", { name: run.coordinatorName, turns })}
           </p>
         </div>
       </div>

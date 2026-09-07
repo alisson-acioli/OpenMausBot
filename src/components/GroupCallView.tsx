@@ -355,7 +355,7 @@ function GroupCall({ group, members }: { group: Group; members: Bot[] }) {
         submitted: false,
       };
       spokenIds.current.add(approval.message.id);
-      const name = member?.name ?? approval.message.from?.name ?? "A group member";
+      const name = member?.name ?? approval.message.from?.name ?? t("call.channelMember");
       const skillPrompt = approval.message.card?.skillRequest?.action === "update"
         ? `${name} wants to update a learned skill. Open the group thread to review the complete skill before replacing the current version. You can say no to deny it.`
         : `${name} wants to enable a new learned skill. Open the group thread to review the complete skill before enabling it. You can say no to deny it.`;
@@ -366,7 +366,7 @@ function GroupCall({ group, members }: { group: Group; members: Bot[] }) {
       const member = members.find((candidate) => candidate.id === question.from?.botId);
       askedQuestion.current = { requestId: question.card.requestId, member };
       spokenIds.current.add(question.id);
-      const name = member?.name ?? question.from?.name ?? "A group member";
+      const name = member?.name ?? question.from?.name ?? t("call.channelMember");
       const detail = question.card.subtitle.trim();
       const choices = question.card.options.length
         ? " " + t("call.optionsAre", { options: question.card.options.join(", ") })
@@ -450,7 +450,7 @@ function GroupCall({ group, members }: { group: Group; members: Bot[] }) {
         : phase === "speaking"
           ? t("call.memberSpeaking", { name: speakingMember?.name ?? t("call.channelMember") })
           : workingMember
-            ? workingMember.name + " is working"
+            ? t("call.memberWorking", { name: workingMember.name })
             : t("call.working");
 
   return (
