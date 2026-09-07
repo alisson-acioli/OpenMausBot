@@ -309,7 +309,7 @@ const Transcript = memo(function Transcript({
                       )}
                       <ThreadRefText text={attachments?.display ?? m.text ?? ""} peers={members} everyone={!group.dm} />
                       {m.via === "api" && (
-                        <div className="mt-1 text-[11px] text-ink-secondary">Sent through the API, not typed here</div>
+                        <div className="mt-1 text-[11px] text-ink-secondary">{t("chat.viaApi")}</div>
                       )}
                     </>
                   ) : (

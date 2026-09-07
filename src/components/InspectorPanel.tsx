@@ -9,6 +9,7 @@
 //
 // Nothing here is captured for the panel's sake — both logs already exist
 // under ~/.openmausbot (server/harness/bus.ts, server/drivers/native.ts).
+import { t } from "@/lib/i18n";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Bug, ChevronDown, ChevronRight, RefreshCw, X } from "lucide-react";
 import { useStore, type Bot } from "@/state/store";
@@ -188,8 +189,8 @@ export function InspectorPanel({ bot }: { bot: Bot }) {
         </span>
         <button
           onClick={() => dispatch({ type: "toggleInspector", open: false })}
-          aria-label="Close the Inspector"
-          title="Close the Inspector"
+          aria-label={t("inspector.closeAria")}
+          title={t("inspector.closeAria")}
           className="rounded-md p-1 text-ink-secondary hover:bg-raised hover:text-ink"
         >
           <X size={18} />
@@ -214,7 +215,7 @@ export function InspectorPanel({ bot }: { bot: Bot }) {
         <span className="ml-auto text-[11px] text-ink-secondary">
           {page ? (shown < total ? `last ${shown} of ${total}` : `${shown} entries`) : "loading…"}
         </span>
-        <button onClick={() => managedRefresh.current()} className="rounded-md p-1 text-ink-secondary hover:bg-raised hover:text-ink" title="Reload from disk">
+        <button onClick={() => managedRefresh.current()} className="rounded-md p-1 text-ink-secondary hover:bg-raised hover:text-ink" title={t("inspector.reload")}>
           <RefreshCw size={14} />
         </button>
       </div>
@@ -223,7 +224,7 @@ export function InspectorPanel({ bot }: { bot: Bot }) {
         {error && <div className="px-4 py-3 text-danger">couldn't load: {error}</div>}
         {page && rows.length === 0 && !error && (
           <div className="px-4 py-6 text-ink-secondary">
-            {lens === "raw" ? "No native protocol messages recorded for this thread yet." : "No runtime events for this thread yet."}
+            {lens === "raw" ? t("inspector.noRaw") : t("inspector.noEvents")}
           </div>
         )}
         {rows.map((row) => (

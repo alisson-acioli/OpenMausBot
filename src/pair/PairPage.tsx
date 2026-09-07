@@ -1,3 +1,4 @@
+import { t } from "@/lib/i18n";
 import { useEffect, useState } from "react";
 
 import {
@@ -89,21 +90,21 @@ export function PairPage({ initialCode, reason }: { initialCode: string | null; 
   return (
     <main className="flex min-h-screen items-center justify-center bg-app px-6 text-ink">
       <div className="w-full max-w-[420px]">
-        <h1 className="text-[20px] font-semibold">{mode === "email" ? "Sign in to" : "Connect to"} {environment?.label ?? "this OpenMausBot"}</h1>
+        <h1 className="text-[20px] font-semibold">{t(mode === "email" ? "pair.signInTo" : "pair.connectToShort")} {environment?.label ?? t("pair.thisInstance")}</h1>
         <p className="mt-1.5 text-[13.5px] leading-relaxed text-ink-secondary">
           {environment ? `Version ${environment.version} on ${environment.platform}. ` : ""}
           {mode === "email"
             ? sent
-              ? `We emailed an 8-digit code to ${email}. It works once and expires in ten minutes.`
-              : "Enter your email and we will send you a one-time code."
-            : "Enter the pairing code shown on the server. Codes work once and expire after five minutes."}
+              ? t("pair.emailedCode", { email })
+              : t("pair.enterEmail")
+            : t("pair.enterCode")}
         </p>
         {reasonWorthShowing(reason) && !connected ? <p className="mt-3 text-[13px] text-ink-secondary">{reasonWorthShowing(reason)}</p> : null}
         {connected ? (
           <p className="mt-4 text-[13.5px]">
-            This browser is already connected.{" "}
+            {t("pair.alreadyConnected")}{" "}
             <a href="/" className="text-accent underline">
-              Open the app
+              {t("pair.openApp")}
             </a>
           </p>
         ) : mode === "email" ? (
@@ -148,11 +149,11 @@ export function PairPage({ initialCode, reason }: { initialCode: string | null; 
             ) : null}
             {error ? <p className="mt-3 text-[13px] text-danger">{error}</p> : null}
             <button type="submit" disabled={busy || !email.includes("@") || (sent && otp.replace(/\D/g, "").length < 8)} className={button}>
-              {busy ? (sent ? "Signing in…" : "Sending…") : sent ? "Sign in" : "Send code"}
+              {busy ? t(sent ? "pair.signingIn" : "pair.sending") : t(sent ? "pair.signIn" : "pair.sendCode")}
             </button>
             {sent ? (
               <button type="button" onClick={() => setSent(false)} className="mt-3 w-full text-[13px] text-ink-secondary underline">
-                Send a new code
+                {t("pair.sendNewCode")}
               </button>
             ) : null}
             <button type="button" onClick={() => switchMode("code")} className="mt-3 w-full text-[13px] text-ink-secondary underline">
