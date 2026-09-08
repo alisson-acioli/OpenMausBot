@@ -52,7 +52,12 @@ function nextRunLabel(at: number | null) {
   const date = new Date(at);
   const today = new Date();
   const sameDay = date.toDateString() === today.toDateString();
-  return `${sameDay ? t("chat.day.today") : date.toLocaleDateString(activeLocale(), { month: "short", day: "numeric" })}, ${date.toLocaleTimeString(activeLocale(), { hour: "numeric", minute: "2-digit" })}`;
+  // schedule.onceAt is this same "{date}, {time}" pairing, so the comma and the
+  // order belong to the pack rather than to this line.
+  return t("schedule.onceAt", {
+    date: sameDay ? t("chat.day.today") : date.toLocaleDateString(activeLocale(), { month: "short", day: "numeric" }),
+    time: date.toLocaleTimeString(activeLocale(), { hour: "numeric", minute: "2-digit" }),
+  });
 }
 
 export function RemoteDesktopPanel({ bot }: { bot: Bot }) {

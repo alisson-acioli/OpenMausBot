@@ -151,7 +151,7 @@ export function LiveBrowser({ bot }: { bot: Bot }) {
       <form className="flex flex-col gap-3" onSubmit={(e) => {
       e.preventDefault(); const field = e.currentTarget.elements.namedItem("pageText") as HTMLInputElement;
       if (driving && field.value) { input({ type: "input_keyboard", eventType: "char", text: field.value }); field.value = ""; setShowTyping(false); }
-    }}><input name="pageText" aria-label={t("browserPanel.textForPage")} autoComplete="off" maxLength={4096} placeholder={t("browserPanel.typeAria")} className="rounded-lg bg-inset px-3 py-2 text-[13px] outline-none focus:ring-1 focus:ring-accent" /><button disabled={!driving} className="self-end rounded-lg bg-accent px-4 py-2 text-[12px] text-accent-ink disabled:opacity-40">{t("browserPanel.type")}</button></form>
+    }}><input name="pageText" aria-label={t("browserPanel.textForPage")} autoComplete="off" maxLength={4096} placeholder={t("browserPanel.typePlaceholder")} className="rounded-lg bg-inset px-3 py-2 text-[13px] outline-none focus:ring-1 focus:ring-accent" /><button disabled={!driving} className="self-end rounded-lg bg-accent px-4 py-2 text-[12px] text-accent-ink disabled:opacity-40">{t("browserPanel.type")}</button></form>
     </dialog>
   </div>;
 }

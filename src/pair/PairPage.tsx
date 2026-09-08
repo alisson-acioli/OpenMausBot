@@ -92,7 +92,7 @@ export function PairPage({ initialCode, reason }: { initialCode: string | null; 
       <div className="w-full max-w-[420px]">
         <h1 className="text-[20px] font-semibold">{t(mode === "email" ? "pair.signInTo" : "pair.connectToShort")} {environment?.label ?? t("pair.thisInstance")}</h1>
         <p className="mt-1.5 text-[13.5px] leading-relaxed text-ink-secondary">
-          {environment ? `Version ${environment.version} on ${environment.platform}. ` : ""}
+          {environment ? `${t("pair.version", { version: environment.version, platform: environment.platform })} ` : ""}
           {mode === "email"
             ? sent
               ? t("pair.emailedCode", { email })
@@ -142,7 +142,7 @@ export function PairPage({ initialCode, reason }: { initialCode: string | null; 
                   className={`${input} font-mono text-[15px] tracking-[0.12em]`}
                 />
                 <label className={fieldLabel} htmlFor="signin-label">
-                  This device
+                  {t("pair.deviceLabel")}
                 </label>
                 <input id="signin-label" value={label} onChange={(e) => setLabel(e.target.value)} maxLength={80} className={input} />
               </>
@@ -163,7 +163,7 @@ export function PairPage({ initialCode, reason }: { initialCode: string | null; 
         ) : (
           <form onSubmit={submitCode}>
             <label className={fieldLabel} htmlFor="pair-code">
-              Pairing code
+              {t("pair.codeLabel")}
             </label>
             <input
               id="pair-code"
@@ -179,12 +179,12 @@ export function PairPage({ initialCode, reason }: { initialCode: string | null; 
               className={`${input} font-mono text-[15px] tracking-[0.12em]`}
             />
             <label className={fieldLabel} htmlFor="pair-label">
-              This device
+              {t("pair.deviceLabel")}
             </label>
             <input id="pair-label" value={label} onChange={(e) => setLabel(e.target.value)} maxLength={80} className={input} />
             {error ? <p className="mt-3 text-[13px] text-danger">{error}</p> : null}
             <button type="submit" disabled={busy || code.replace(/[^a-z0-9]/gi, "").length < 12} className={button}>
-              {busy ? "Connecting…" : "Connect"}
+              {t(busy ? "pair.connecting" : "pair.connect")}
             </button>
             {emailOffered ? (
               <button type="button" onClick={() => switchMode("email")} className="mt-3 w-full text-[13px] text-ink-secondary underline">

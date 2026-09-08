@@ -115,7 +115,7 @@ export function ManageMembersPanel({
         <div className="mb-1 text-[15px] font-semibold text-ink">{t("members.title")}</div>
         <div className="mb-3 truncate text-[13px] text-ink-secondary">{group.name}</div>
         <BotPickerList bots={bots} picked={picked} onToggle={toggle} emptyHint={t("members.emptyHint")} />
-        {!memberIds.length && <div className="mt-2 text-[12px] text-ink-secondary">A group needs at least one bot.</div>}
+        {!memberIds.length && <div className="mt-2 text-[12px] text-ink-secondary">{t("members.needsOneBot")}</div>}
         {saveError && (
           <div role="alert" className="mt-2 text-[12px] text-danger">
             {saveError}

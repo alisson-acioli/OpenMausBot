@@ -86,7 +86,7 @@ export function GoalRunCard({ message }: { message: Message }) {
         </div>
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
-            <h3 className="truncate text-[13.5px] font-semibold text-ink">{goal || "Group goal"}</h3>
+            <h3 className="truncate text-[13.5px] font-semibold text-ink">{goal || t("goal.channelGoal")}</h3>
             <span aria-live="polite" className={cn("text-[11.5px] font-medium", copy.tone)}>
               {t(copy.labelKey)}
             </span>
