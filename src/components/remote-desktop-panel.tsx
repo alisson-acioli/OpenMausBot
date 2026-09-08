@@ -29,12 +29,12 @@ function routineScheduleLabel(routine: Routine) {
     const cadence = routine.schedule.everyMinutes % 60 === 0
       ? t("schedule.everyHr", { count: routine.schedule.everyMinutes / 60 })
       : t("schedule.everyMin", { count: routine.schedule.everyMinutes });
-    return `${cadence} · starting ${new Date(routine.schedule.anchorAt).toLocaleString(activeLocale(), {
-      month: "short",
-      day: "numeric",
-      hour: "numeric",
-      minute: "2-digit",
-    })}`;
+    const anchor = new Date(routine.schedule.anchorAt);
+    return t("schedule.intervalStarting", {
+      cadence,
+      date: anchor.toLocaleDateString(activeLocale(), { month: "short", day: "numeric" }),
+      time: anchor.toLocaleTimeString(activeLocale(), { hour: "numeric", minute: "2-digit" }),
+    });
   }
   const days = routine.schedule.weekdays;
   const cadence =
@@ -52,7 +52,7 @@ function nextRunLabel(at: number | null) {
   const date = new Date(at);
   const today = new Date();
   const sameDay = date.toDateString() === today.toDateString();
-  return `${sameDay ? t("chat.day.today") : date.toLocaleDateString(activeLocale(), { month: "short", day: "numeric" })}, ${date.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })}`;
+  return `${sameDay ? t("chat.day.today") : date.toLocaleDateString(activeLocale(), { month: "short", day: "numeric" })}, ${date.toLocaleTimeString(activeLocale(), { hour: "numeric", minute: "2-digit" })}`;
 }
 
 export function RemoteDesktopPanel({ bot }: { bot: Bot }) {
