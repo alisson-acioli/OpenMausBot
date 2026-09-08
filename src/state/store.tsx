@@ -14,7 +14,7 @@ import {
   type ReactNode,
 } from "react";
 import type { CloudBackend, EffortLevel } from "../../server/contracts.ts";
-import { t } from "@/lib/i18n";
+import { activeLocale, t } from "@/lib/i18n";
 import type { MausColor, MausMotion } from "@/lib/mascot";
 import type { BotAvatarCrop } from "../../shared/bot-avatar";
 import { approvalModeFor, type ApprovalMode } from "../../shared/approval-mode";
@@ -2376,7 +2376,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
           if (card?.requestId) {
             api(`/api/threads/${action.threadId}/respond`, {
               method: "POST",
-              body: JSON.stringify({ requestId: card.requestId, behavior: "deny", message: t("approval.dismissedByUser") }),
+              body: JSON.stringify({ requestId: card.requestId, behavior: "deny", message: "Dismissed by user." }),
             }).catch(() => {});
           } else {
             persistCard(action.botId, action.messageId, { dismissed: true });
@@ -3065,7 +3065,7 @@ export function useStore() {
 }
 
 export function formatTime(at: number) {
-  return new Date(at).toLocaleTimeString([], {
+  return new Date(at).toLocaleTimeString(activeLocale(), {
     hour: "numeric",
     minute: "2-digit",
   });

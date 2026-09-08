@@ -18,7 +18,7 @@ function viewerAddress(raw: unknown): string {
 
 function routineScheduleLabel(routine: Routine) {
   if (routine.schedule.type === "once") {
-    return new Date(routine.schedule.at).toLocaleString([], {
+    return new Date(routine.schedule.at).toLocaleString(activeLocale(), {
       month: "short",
       day: "numeric",
       hour: "numeric",
@@ -29,7 +29,7 @@ function routineScheduleLabel(routine: Routine) {
     const cadence = routine.schedule.everyMinutes % 60 === 0
       ? t("schedule.everyHr", { count: routine.schedule.everyMinutes / 60 })
       : t("schedule.everyMin", { count: routine.schedule.everyMinutes });
-    return `${cadence} · starting ${new Date(routine.schedule.anchorAt).toLocaleString([], {
+    return `${cadence} · starting ${new Date(routine.schedule.anchorAt).toLocaleString(activeLocale(), {
       month: "short",
       day: "numeric",
       hour: "numeric",
@@ -44,7 +44,7 @@ function routineScheduleLabel(routine: Routine) {
         ? t("computer.routine.weekdays")
         : days.map((day) => dayName(day)).join(", ");
   const [hour, minute] = routine.schedule.time.split(":").map(Number);
-  return `${cadence} · ${new Date(2000, 0, 1, hour, minute).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })}`;
+  return `${cadence} · ${new Date(2000, 0, 1, hour, minute).toLocaleTimeString(activeLocale(), { hour: "numeric", minute: "2-digit" })}`;
 }
 
 function nextRunLabel(at: number | null) {

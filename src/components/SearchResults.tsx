@@ -90,7 +90,7 @@ export function SearchResults({ query, onLanded }: { query: string; onLanded: ()
               </span>
               {!hit.onActivePath && (
                 <span className="mt-0.5 flex items-center gap-1 text-[11px] text-ink-secondary">
-                  <GitBranch size={10} /> other version
+                  <GitBranch size={10} /> {t("search.otherVersion")}
                 </span>
               )}
             </span>

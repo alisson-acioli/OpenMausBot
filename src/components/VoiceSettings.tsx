@@ -283,7 +283,7 @@ export function VoiceSettings({
               aria-label={t("voice.hearThis")}
               className="flex w-[72px] shrink-0 items-center justify-center gap-1.5 rounded-lg bg-control py-2 text-[13px] text-ink hover:bg-raised-hover disabled:cursor-not-allowed disabled:opacity-50"
             >
-              <Volume2 size={14} /> Try
+              <Volume2 size={14} /> {t("voice.try")}
             </button>
           </div>
         </div>

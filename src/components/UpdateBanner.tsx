@@ -163,11 +163,11 @@ export function UpdateBanner() {
             >
               {pending === "download" ? (
                 <>
-                  <Loader2 size={13} className="animate-spin" /> Starting…
+                  <Loader2 size={13} className="animate-spin" /> {t("update.starting")}
                 </>
               ) : (
                 <>
-                  <ArrowDownToLine size={13} /> Download
+                  <ArrowDownToLine size={13} /> {t("update.download")}
                 </>
               )}
             </button>
@@ -187,11 +187,11 @@ export function UpdateBanner() {
                 </>
               ) : handoff ? (
                 <>
-                  <PackageOpen size={13} /> Install
+                  <PackageOpen size={13} /> {t("update.install")}
                 </>
               ) : (
                 <>
-                  <RefreshCw size={13} /> Restart to update
+                  <RefreshCw size={13} /> {t("update.restartToUpdate")}
                 </>
               )}
             </button>
@@ -207,7 +207,7 @@ export function UpdateBanner() {
             >
               {pending === "check" ? (
                 <>
-                  <Loader2 size={13} className="animate-spin" /> Checking…
+                  <Loader2 size={13} className="animate-spin" /> {t("common.checking")}
                 </>
               ) : (
                 t("computer.linux.tryAgain")

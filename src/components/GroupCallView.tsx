@@ -247,7 +247,7 @@ function GroupCall({ group, members }: { group: Group; members: Bot[] }) {
             threadId: group.threadId,
             requestId: openApproval.requestId,
             behavior: allow ? "allow" : "deny",
-            message: allow ? undefined : t("call.deniedOnGroupCall"),
+            message: allow ? undefined : "Denied by the user, on a group call.",
             onError: (error: string) => {
               const pending = askedApproval.current;
               if (

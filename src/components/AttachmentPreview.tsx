@@ -452,7 +452,7 @@ export function AttachmentPreviewDialog({
           {!loaded && !failed && (
             <div className="absolute inset-4 flex animate-pulse items-center justify-center rounded-xl bg-white/[0.055] sm:inset-8" role="status">
               <span className="flex items-center gap-2 text-[13px] text-white/55">
-                <LoaderCircle size={17} className="animate-spin" /> Loading image…
+                <LoaderCircle size={17} className="animate-spin" /> {t("attachments.loadingImage")}
               </span>
             </div>
           )}
@@ -465,7 +465,7 @@ export function AttachmentPreviewDialog({
                 onClick={retry}
                 className="flex items-center gap-1.5 rounded-lg border border-white/15 bg-white/10 px-3 py-1.5 text-[12px] text-white hover:bg-white/15"
               >
-                <RotateCcw size={13} /> Retry
+                <RotateCcw size={13} /> {t("chat.retry")}
               </button>
             </div>
           ) : (

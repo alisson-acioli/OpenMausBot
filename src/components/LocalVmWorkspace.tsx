@@ -470,7 +470,7 @@ function LocalVmPane({
             </div>
           ) : status?.ready && nativeState.status !== "error" && !error ? (
             <div className="flex items-center gap-2 text-[12px] text-ink-secondary">
-              <Loader2 size={15} className="animate-spin" /> Connecting live view…
+              <Loader2 size={15} className="animate-spin" /> {t("vmWorkspace.connectingLive")}
             </div>
           ) : (
             <div className="flex max-w-[300px] flex-col items-center gap-3 text-ink-secondary">
@@ -489,7 +489,7 @@ function LocalVmPane({
                   onClick={() => setRetry((value) => value + 1)}
                   className="flex items-center gap-1.5 rounded-lg bg-raised px-3 py-2 text-[12px] text-ink hover:bg-raised-hover"
                 >
-                  <RefreshCw size={13} /> Retry status
+                  <RefreshCw size={13} /> {t("vmWorkspace.retryStatus")}
                 </button>
                 <button
                   type="button"

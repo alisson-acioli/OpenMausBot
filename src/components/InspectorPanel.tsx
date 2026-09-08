@@ -185,7 +185,7 @@ export function InspectorPanel({ bot }: { bot: Bot }) {
     <aside className="animate-panel-in flex h-full w-[460px] shrink-0 flex-col border-l border-hairline/40 bg-panel">
       <div className="flex items-center justify-between px-4 py-3">
         <span className="flex items-center gap-2 text-[15px] font-semibold text-ink">
-          <Bug size={16} className="text-ink-secondary" /> Inspector
+          <Bug size={16} className="text-ink-secondary" /> {t("chat.inspector")}
         </span>
         <button
           onClick={() => dispatch({ type: "toggleInspector", open: false })}
