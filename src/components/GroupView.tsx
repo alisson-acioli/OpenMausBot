@@ -1095,13 +1095,13 @@ export function GroupView({ group }: { group: Group }) {
       {/* Header: static member avatars; a ring + dot marks the working bot. */}
       <div
         className={cn(
-          "flex items-center justify-between px-5 py-3",
+          "flex items-center justify-between border-b border-hairline/40 px-4 py-1.5",
           // Room for the drawer button, which overlays this corner below md.
           "pl-11 md:pl-5",
         )}
       >
         <div className="flex min-w-0 items-center gap-2">
-          <span className="truncate text-[15px] font-semibold text-ink">{group.name}</span>
+          <span className="truncate text-[13px] font-medium text-ink">{group.name}</span>
           {!setupPending && !group.dm && <GroupTaskPicker group={group} />}
         </div>
         <div className="flex items-center gap-1.5">

@@ -149,7 +149,9 @@ export function CallTargetButton({
         aria-label={label}
         title={label}
         className={cn(
-          "relative flex size-9 items-center justify-center rounded-full transition-colors",
+          // sized with the other header controls: at size-9 this one button set the
+          // height of the whole strip
+          "relative flex size-8 items-center justify-center rounded-full transition-colors",
           active
             ? "bg-danger text-white hover:brightness-110"
             : unavailable
