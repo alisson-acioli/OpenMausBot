@@ -14,7 +14,7 @@ import {
   type TeamMapSnapshot,
 } from "@/lib/team-map";
 import { cn } from "@/lib/cn";
-import { t } from "@/lib/i18n";
+import { activeLocale, t } from "@/lib/i18n";
 import { BotInstructionsDialog } from "./BotInstructionsDialog";
 
 const statusTone = {
@@ -282,7 +282,7 @@ function SectionContextDialog({ section, label, onClose }: { section: string; la
               <div className="mt-2 flex items-start justify-between gap-4 text-[11.5px] text-ink-secondary">
                 <span>
                   {t("teamMap.dialog.hint")}
-                  {updatedAt ? ` ${t("teamMap.dialog.lastSaved", { when: new Date(updatedAt).toLocaleString() })}` : ""}
+                  {updatedAt ? ` ${t("teamMap.dialog.lastSaved", { when: new Date(updatedAt).toLocaleString(activeLocale()) })}` : ""}
                 </span>
                 <span className={cn("shrink-0 tabular-nums", bytes > maxBytes && "text-danger")}>
                   {t("teamMap.dialog.bytes", { used: bytes.toLocaleString(), max: maxBytes.toLocaleString() })}

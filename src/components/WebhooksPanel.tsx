@@ -20,7 +20,7 @@ import {
 
 import { BotAvatar } from "@/components/Avatar";
 import { cn } from "@/lib/cn";
-import { t } from "@/lib/i18n";
+import { activeLocale, t } from "@/lib/i18n";
 import type { RoutineRun, RoutineRunOn } from "@/lib/routines";
 import {
   loadWebhookCredentials,
@@ -37,7 +37,7 @@ function relativeTime(at?: number) {
   if (elapsed < 60_000) return t("webhooks.time.justNow");
   if (elapsed < 60 * 60_000) return t("webhooks.time.minutes", { count: Math.floor(elapsed / 60_000) });
   if (elapsed < 24 * 60 * 60_000) return t("webhooks.time.hours", { count: Math.floor(elapsed / 3_600_000) });
-  return new Date(at).toLocaleDateString([], { month: "short", day: "numeric" });
+  return new Date(at).toLocaleDateString(activeLocale(), { month: "short", day: "numeric" });
 }
 
 function deliverySummary(run: RoutineRun) {
