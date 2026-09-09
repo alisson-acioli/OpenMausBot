@@ -17,8 +17,8 @@ describe("provider marks", () => {
     for (const file of MARK_FILES) {
       const source = readFileSync(join(here, file), "utf8");
       // any literal from #dddddd upward, in a fill/text utility or an attribute
-      const tooLight = [...source.matchAll(/#([a-fA-F0-9]{6})\b/g)]
-        .map(([, hex]) => hex)
+      const tooLight = [...source.matchAll(/#([a-fA-F0-9]{3}|[a-fA-F0-9]{6})\b/g)]
+        .map(([, hex]) => hex.length === 3 ? [...hex].map((c) => c + c).join("") : hex)
         .filter((hex) => {
           const [r, g, b] = [0, 2, 4].map((i) => parseInt(hex.slice(i, i + 2), 16));
           return Math.min(r, g, b) >= 0xdd;

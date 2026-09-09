@@ -518,7 +518,7 @@
   --color-scrollbar: #c4c4c4;
   --color-maus-line: #5f5f5f;
 
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text",
+  --font-sans: "Inter", -apple-system, blinkmacsystemfont, "SF Pro Text",
     "Segoe UI", system-ui, sans-serif;
   --radius-lg: 8px;
   --radius-xl: 14px;
@@ -1191,6 +1191,31 @@ body {
    thread hardcode would be black on black. */
 .bg-bubble-user {
   color: var(--color-bubble-user-ink);
+}
+
+/* Daylight's inverted bubble is a dark surface, including its editor,
+   quoted replies and attachment controls. Keep their normal semantic tokens
+   together; overriding only the parent's color leaves explicit child ink dark.
+   Stop at a nested skin so the picker previews retain their own palettes. */
+@scope ([data-skin="daylight"]) to ([data-skin]) {
+  .bg-bubble-user {
+    --color-ink: #fcfcfc;
+    --color-ink-secondary: #c4c4c4;
+    --color-panel: #111111;
+    --color-inset: #191919;
+    --color-raised: #2f2f2f;
+    --color-raised-hover: #3d3d3d;
+    --color-control: #2f2f2f;
+    --color-hairline: #666666;
+    --color-accent: #7fc0ff;
+    --color-accent-text: #7fc0ff;
+    --color-accent-ink: #070707;
+    --color-focus: #7fc0ff;
+    --color-danger: #ff7788;
+    --color-danger-ink: #070707;
+    --color-success: #63b58a;
+    --color-success-ink: #070707;
+  }
 }
 
 /* Disabled buttons.
