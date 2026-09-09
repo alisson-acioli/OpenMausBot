@@ -34,6 +34,7 @@ describe("skins", () => {
     };
     const reference = tokensOf(DEFAULT_SKIN);
     expect(reference.size).toBeGreaterThan(15);
+    expect(reference).toContain("--color-composer-ring");
     for (const id of SKIN_IDS) {
       expect([...reference].filter((t) => !tokensOf(id).has(t))).toEqual([]);
     }
